@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,37 @@ namespace ConsoleApp7
 {
     class Program
     {
+       static List<string> _noDuplicate = new List<string>();
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            string[] names1 = new string[] { "Ava", "Emma", "Olivia" };
+            string[] names2 = new string[] { "Olivia", "Sophia", "Emma" };
+            UniqueNames(names1, names2); 
+            UniqueNames(names2 , names1);
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            foreach (var d in _noDuplicate)
+            {
+                Console.WriteLine(d);
+            }
+
+            Console.Read();
+        }
+       
+        public static void UniqueNames(string[] array1, string[] array2)
+        {
+            foreach (var n1 in array1)
+            {
+                foreach (var n2 in array2)
+                {
+                    if (n1 != n2)
+                    {
+                        if (!_noDuplicate.Contains(n1))
+                        {
+                            _noDuplicate.Add(n1);
+                        }
+                    }
+                }
+            }
         }
     }
 }
